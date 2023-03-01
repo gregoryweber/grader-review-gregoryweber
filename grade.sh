@@ -25,7 +25,7 @@ cp -r ./lib ./student-submission/lib
 # Compile all of the java files
 echo "Compiling all java files..."
 cd student-submission
-javac -cp ".;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar" *.java 2> javac-results.txt
+javac -cp $CPATH *.java 2> javac-results.txt
 
 # Detect if any errors happened
 if [[ $? -ne 0 ]]
@@ -42,7 +42,7 @@ fi
 
 # Now running the tests on user code
 echo 'Running tests on student submission...'
-java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore TestListExamples > test-results.txt
+java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > test-results.txt
 
 # Get second line in test-results.txt. The amount of E's will tell us the amount of failures vs. successes.
 # Command below was found here: https://stackoverflow.com/questions/19327556/get-specific-line-from-text-file-using-just-shell-script
